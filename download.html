@@ -4,195 +4,171 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Download Caloez - AI Nutrition Intake Tracker</title>
+    <title>Caloez - AI-Powered Nutrition Analysis | Download App</title>
+    <meta name="description" content="Caloez - AI-powered calorie identification. Snap a photo to identify food calories. Download now!">
     <style>
-        :root {
-            --primary-green: #2D6A4F;
-            --light-green: #E8F5E9;
-            --background: #F5F5F5;
-            --text-dark: #1A1A1A;
-            --text-grey: #666666;
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
         body {
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--background);
-            color: var(--text-dark);
-            margin: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            background: linear-gradient(135deg, #E0F7FA 0%, #E8F5E9 100%);
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            min-height: 100vh;
             padding: 20px;
-            text-align: center;
         }
 
         .container {
+            background: white;
+            border-radius: 24px;
+            padding: 40px;
             max-width: 400px;
             width: 100%;
-            background: white;
-            padding: 40px;
-            border-radius: 32px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            text-align: center;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
         }
 
-        .app-icon {
-            width: 100px;
-            height: 100px;
-            border-radius: 22px;
-            margin-bottom: 24px;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        }
-
-        h1 {
-            font-size: 28px;
-            font-weight: 800;
-            margin: 0 0 12px 0;
-            color: var(--primary-green);
-        }
-
-        p {
-            font-size: 16px;
-            color: var(--text-grey);
-            line-height: 1.5;
-            margin-bottom: 32px;
-        }
-
-        .download-btn {
+        .logo {
+            width: 80px;
+            height: 80px;
+            background: transparent;
+            border-radius: 16px;
+            margin: 0 auto 20px;
             display: flex;
             align-items: center;
             justify-content: center;
-            background-color: var(--primary-green);
-            color: white;
-            text-decoration: none;
-            padding: 16px 24px;
-            border-radius: 16px;
-            font-size: 18px;
-            font-weight: 600;
-            margin-bottom: 12px;
-            transition: transform 0.2s, background-color 0.2s;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
 
-        .download-btn:active {
-            transform: scale(0.98);
+        .logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
-        .download-btn svg {
-            margin-right: 10px;
+        h1 {
+            color: #2D6A4F;
+            font-size: 28px;
+            margin-bottom: 10px;
         }
 
-        .secondary-text {
+        .tagline {
+            color: #666;
+            font-size: 16px;
+            margin-bottom: 30px;
+        }
+
+        .redirect-msg {
+            color: #2D6A4F;
             font-size: 14px;
-            color: var(--text-grey);
-            margin-top: 24px;
-        }
-
-        .footer {
-            margin-top: 40px;
-            font-size: 12px;
-            color: #999;
-        }
-
-        /* Loading state */
-        #redirecting {
-            display: none;
-            flex-direction: column;
-            align-items: center;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #E8F5E9;
+            border-radius: 12px;
         }
 
         .spinner {
-            width: 30px;
-            height: 30px;
-            border: 3px solid var(--light-green);
-            border-top: 3px solid var(--primary-green);
+            width: 24px;
+            height: 24px;
+            border: 3px solid #E8F5E9;
+            border-top-color: #2D6A4F;
             border-radius: 50%;
             animation: spin 1s linear infinite;
-            margin-bottom: 16px;
+            margin: 0 auto 15px;
         }
 
         @keyframes spin {
-            0% {
-                transform: rotate(0deg);
-            }
-
-            100% {
+            to {
                 transform: rotate(360deg);
             }
         }
+
+        .btn {
+            display: block;
+            width: 100%;
+            padding: 16px 24px;
+            margin: 10px 0;
+            border-radius: 12px;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 600;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .btn-ios {
+            background: #000;
+            color: #fff;
+        }
+
+        .btn-android {
+            background: #2D6A4F;
+            color: #fff;
+        }
+
+        .divider {
+            color: #999;
+            font-size: 14px;
+            margin: 20px 0;
+        }
+
+        .footer {
+            margin-top: 30px;
+            color: #999;
+            font-size: 12px;
+        }
     </style>
+    <script>
+        // Auto-redirect based on device
+        (function () {
+            var ua = navigator.userAgent || navigator.vendor || window.opera;
+            var iosLink = "https://apps.apple.com/app/caloez/id6740043498";
+            var androidLink = "https://play.google.com/store/apps/details?id=com.caloez.app";
+
+            if (/iPhone|iPad|iPod/i.test(ua)) {
+                setTimeout(function () { window.location.href = iosLink; }, 1500);
+            } else if (/Android/i.test(ua)) {
+                setTimeout(function () { window.location.href = androidLink; }, 1500);
+            }
+        })();
+    </script>
 </head>
 
 <body>
-    <div class="container" id="main-content">
-        <img src="app_icon.png" alt="Caloez Icon" class="app-icon">
+    <div class="container">
+        <div class="logo">
+            <img src="app_icon.png" alt="Caloez Logo">
+        </div>
         <h1>Caloez</h1>
-        <p>Your AI Nutrition Tracker.<br>Snap a photo, track your calories.</p>
+        <p class="tagline">AI Calories Identification, Simply Snap & Know</p>
 
-        <div id="redirecting">
+        <div class="redirect-msg">
             <div class="spinner"></div>
-            <p>Redirecting to Store...</p>
+            Detecting your device and redirecting...
         </div>
 
-        <div id="buttons">
-            <a href="https://apps.apple.com/app/caloez/id6740118501" class="download-btn" id="ios-btn"
-                style="display: none;">
-                Download on App Store
-            </a>
-            <a href="https://play.google.com/store/apps/details?id=com.flowlab.caloez" class="download-btn"
-                id="android-btn" style="display: none;">
-                Get it on Google Play
-            </a>
-        </div>
+        <div class="divider">Or download manually</div>
 
-        <p class="secondary-text" id="manual-tip" style="display: none;">
-            Redirect failed? Click the button above to download.
-        </p>
+        <a href="https://apps.apple.com/app/caloez/id6740043498" class="btn btn-ios">
+            📱 Download on App Store
+        </a>
+        <a href="https://play.google.com/store/apps/details?id=com.caloez.app" class="btn btn-android">
+            🤖 Download on Google Play
+        </a>
+
+        <p class="footer">© 2026 Caloez. All rights reserved.</p>
     </div>
-
-    <div class="footer">
-        &copy; 2026 Caloez AI. All rights reserved.
-    </div>
-
-    <script>
-             onst appl eUrl             ps://apps.apple.com/app/caloez/id6740118501";
-        const google            "https://play.google.com/store/apps/details?id=com.flowlab.caloe                   function redirect() {
-            const userAgent = navigator.userAgent || t            dor || window.opera;
-            con                ectingDiv = documen t.getElementById('redirecting');
-            co            ttonsDiv = document.getElementById                s');
-            co nst manualTip = document.getElementById('manual-tip                          cot iosBtn = document.getElementBs-btn');
-            const androidBtn = document.getElementById('android-btn');
-
-            let targetUrl = null;
-
-            if (/iPad|iPhone|iPod/.test(userAgent) && !window.MSStream) {
-                targetUrl = appleUrl;
-                iosBtn.style.display = 'flex';
-            } else if (/android/i.test(userAgent)) {
-                targetUrl = googleUrl;
-                androidBtn.style.display = 'flex';
-            } else {
-                // Desktop or others
-                iosBtn.style.display = 'flex';
-                androidBtn.style.display = 'flex';
-                return; // Don't auto-redirect on desktop
-            }
-
-            if (targetUrl) {
-                redirectingDiv.style.display = 'flex';
-                setTimeout(() => {
-                    window.location.href = targetUrl;
-                    setTimeout(() => {
-                        // If still on the same page after 2 seconds, show buttons
-                        redirectingDiv.style.display = 'none';
-                        manualTip.style.display = 'block';
-                    }, 2000);
-                }, 1000);
-            }
-        }
-
-        window.onload = redirect;
-    </script>
 </body>
 
 </html>
